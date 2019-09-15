@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -158,14 +160,12 @@ AWS_S3_FILE_OVERWRITE = False
 
 AWS_DEFAULT_ACL = None
 AWS_S3_SIGNATURE_VERSION = 's3v4'
-# AWS_QUERYSTRING_AUTH = False
 AWS_S3_REGION_NAME = 'eu-central-1'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 
 # Configure Django App for Heroku.
-import django_heroku
 django_heroku.settings(locals())
 # This will automatically configure DATABASE_URL, ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for your application.
 # Bonus points! If you set the SECRET_KEY environment variable, it will automatically be used in your Django settings, too!
