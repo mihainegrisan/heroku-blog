@@ -20,12 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%a#o9(^u45z!d_^^94jrb#$%1-rc7e8zr+tqkukfo^xp@4(_jv'
+# SECRET_KEY = '%a#o9(^u45z!d_^^94jrb#$%1-rc7e8zr+tqkukfo^xp@4(_jv'
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['blog-mihai.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -159,3 +161,11 @@ AWS_S3_SIGNATURE_VERSION = 's3v4'
 # AWS_QUERYSTRING_AUTH = False
 AWS_S3_REGION_NAME = 'eu-central-1'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
+# This will automatically configure DATABASE_URL, ALLOWED_HOSTS, WhiteNoise (for static assets), Logging, and Heroku CI for your application.
+# Bonus points! If you set the SECRET_KEY environment variable, it will automatically be used in your Django settings, too!
